@@ -1,6 +1,6 @@
 <template>
   <div id="secure">
-    Listado de Estudiantes
+    <span><b>Listado de Estudiantes</b></span>
     <table>
       <thead>
         <tr>
