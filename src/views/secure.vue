@@ -1,18 +1,21 @@
 <template>
   <div id="secure">
+    Listado de Estudiantes
     <table>
       <thead>
         <tr>
           <th>Nro</th>
           <th>Nombres</th>
           <th>Usuario</th>
+          <th>Acción</th>
         </tr>
       </thead>
       <tbody>
-        <tr v-for="(student, i) in this.$parent.students[0]" :key="i">
+        <tr v-for="(std, i) in $parent.students" :key="i">
           <th scope="row">{{i}}</th>  
-          <td>{{student.Nombres}} {{student.Apellidos}}</td> 
-          <td>{{student.Usuario}}</td> 
+          <td>{{std.Nombres}} {{std.Apellidos}}</td> 
+          <td>{{std.Usuario}}</td>
+          <td><a href="#">Ver Detalle</a></td>
         </tr>
       </tbody>
     </table>
@@ -25,7 +28,7 @@
     data() {
       return {};
     }
-  };
+  }
 </script>
 
 <style scoped>
