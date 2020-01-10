@@ -24,18 +24,18 @@
     methods: {
       login(username, password) {
         if (username != "" && password != "") {
-          var i, students = this.$parent.students;
-          for (i = 0; i < students.length; i++) {
-            if (   username == students[i].Usuario 
-                && password == students[i].Clave) {
+          var students = this.$parent.students;
+          for (var index = 0; index < students.length; index++) {
+            if (   username == students[index].Usuario 
+                && password == students[index].Clave) {
               this.$emit("authenticated", true);
-              this.$router.replace({ name: "secure" });
+              this.$router.replace({ name: "student" });
             } else {
-              console.log("The username and / or password is incorrect");
+              // console.log("The username and / or password is incorrect");
             }
           }
         } else {
-          console.log("A username and password must be present");
+          // console.log("A username and password must be present");
         }
       }
     }

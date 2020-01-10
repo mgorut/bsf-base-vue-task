@@ -11,8 +11,8 @@
         </tr>
       </thead>
       <tbody>
-        <tr v-for="(std, i) in $parent.students" :key="i">
-          <th scope="row">{{i}}</th>  
+        <tr v-for="(std, index) in $parent.students" :key="index">
+          <th scope="row">{{index}}</th>  
           <td>{{std.Nombres}} {{std.Apellidos}}</td> 
           <td>{{std.Usuario}}</td>
           <td><a href="#">Ver Detalle</a></td>

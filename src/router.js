@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import LoginComponent from "./views/login.vue"
-import SecureComponent from "./views/secure.vue"
+import StudentComponent from "./views/student.vue"
 
 Vue.use(Router)
 
@@ -19,9 +19,9 @@ export default new Router({
             component: LoginComponent
         },
         {
-            path: "/secure",
-            name: "secure",
-            component: SecureComponent
+            path: "/students",
+            name: "student",
+            component: StudentComponent
         }
     ]
 })
