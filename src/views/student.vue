@@ -1,5 +1,5 @@
 <template>
-  <div id="secure">
+  <div id="student">
     <span><b>Listado de Estudiantes</b></span>
     <table>
       <thead>
@@ -16,6 +16,7 @@
           <td>{{std.Nombres}} {{std.Apellidos}}</td> 
           <td>{{std.Usuario}}</td>
           <td><a href="#">Ver Detalle</a></td>
+          <!-- <td>{{$parent.student[0].Usuario}} {{$parent.student[0].Clave}}</td> -->
         </tr>
       </tbody>
     </table>
@@ -24,7 +25,7 @@
 
 <script>
   export default {
-    name: "secure",
+    name: "student",
     data() {
       return {};
     }

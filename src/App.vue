@@ -14,11 +14,12 @@ export default {
     return {
       authenticated: false,
       students: [
-            {Nombres: 'Rigo', Apellidos: 'Paredes', Usuario: 'rparedes', Clave: '111111', email: 'rparedes@belatrixsf.com'},
-            {Nombres: 'Peter', Apellidos: 'Vasquez', Usuario: 'pvasquez', Clave: '222222', email: 'pvasquez@belatrixsf.com'},
-            {Nombres: 'Elio', Apellidos: 'Navarrete', Usuario: 'enavarrete', Clave: '333333', email: 'enavarrete@belatrixsf.com'},
-            {Nombres: 'Gian Carlo', Apellidos: 'Velazque', Usuario: 'gvelazque', Clave: '444444', email: 'gvelazque@belatrixsf.com'}
-        ]
+            {Nombres: "Rigo", Apellidos: "Paredes", Usuario: "rparedes", Clave: "111111", email: "rparedes@belatrixsf.com"},
+            {Nombres: "Peter", Apellidos: "Vasquez", Usuario: "pvasquez", Clave: "222222", email: "pvasquez@belatrixsf.com"},
+            {Nombres: "Elio", Apellidos: "Navarrete", Usuario: "enavarrete", Clave: "333333", email: "enavarrete@belatrixsf.com"},
+            {Nombres: "Gian Carlo", Apellidos: "Velazque", Usuario: "gvelazque", Clave: "444444", email: "gvelazque@belatrixsf.com"}
+        ],
+     student: ""
     };
   },
   mounted() {

@@ -1,12 +1,12 @@
 <template>
   <div id="login">
     <span>Usuario</span>
-    <input type="text" name="username" v-model="input.username" placeholder="Digite el nombre de usuario" />
+    <input type="text" name="username" v-model="model.username" placeholder="Digite el nombre de usuario" />
     <br/>
     <span>Contraseña</span>
-    <input type="password" name="password" v-model="input.password" placeholder="Digite la contraseña" />
+    <input type="password" name="password" v-model="model.password" placeholder="Digite la contraseña" />
     <br/>
-    <button type="button" v-on:click="login(input.username, input.password)">Iniciar Sesión</button>
+    <button type="button" v-on:click="login(model.username, model.password)">Iniciar Sesión</button>
   </div>
 </template>
 
@@ -15,7 +15,7 @@
     name: "login",
     data() {
       return {
-        input: {
+        model: {
           username: "",
           password: ""
         }
@@ -23,20 +23,25 @@
     },
     methods: {
       login(username, password) {
+        var students = this.$parent.students;
+        var index = 0, found = false;
         if (username != "" && password != "") {
-          var students = this.$parent.students;
-          for (var index = 0; index < students.length; index++) {
-            if (   username == students[index].Usuario 
-                && password == students[index].Clave) {
+          while (!found && index < students.length) {
+            if (username == students[index].Usuario && password == students[index].Clave) {
+              found = true;
+            }
+            index++;      
+          }
+          if (found) {
               this.$emit("authenticated", true);
               this.$router.replace({ name: "student" });
-            } else {
-              // console.log("The username and / or password is incorrect");
-            }
-          }
+              this.$parent.student = username;
+          } else {
+            // show an error message (not found)
+          }             
         } else {
-          // console.log("A username and password must be present");
-        }
+          // show an error message (required fields)
+        }             
       }
     }
   };
