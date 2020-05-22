@@ -1,12 +1,35 @@
 <template>
   <div id="login">
-    <span>Usuario</span>
-    <input type="text" name="username" v-model="model.username" placeholder="Digite el nombre de usuario" />
-    <br/>
-    <span>Contraseña</span>
-    <input type="password" name="password" v-model="model.password" placeholder="Digite la contraseña" />
-    <br/>
-    <button type="button" v-on:click="login(model.username, model.password)">Iniciar Sesión</button>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <h3 class="text-center text-info">Sistema de estudiantes</h3>
+      <br>
+      <br>
+      <div class="container">
+          <div id="login-row" class="row justify-content-center align-items-center">
+              <div id="login-column" class="col-md-6">
+                  <div id="login-box" class="col-md-12">
+                      <form id="login-form" class="form" @submit.prevent="onSubmit($event)">
+                          <div class="form-group">
+                              <label for="username" class="text-info">Nombre de usuario:</label><br>
+                              <input type="text" id="username" v-model="usuario.usuario" class="form-control">
+                          </div>
+                          <div class="form-group">
+                              <label for="password" class="text-info">Contraseña:</label><br>
+                              <input type="text" id="password" v-model="usuario.clave" class="form-control">
+                          </div>
+                          <input type="submit" v-on:click="login()" class="btn btn-info btn-md" value="Iniciar Sesión">
+                      </form>
+                  </div>
+              </div>
+          </div>
+      </div>
+    <FlashMessage></FlashMessage>      
   </div>
 </template>
 
@@ -15,66 +38,35 @@
     name: "login",
     data() {
       return {
-        model: {
-          username: "",
-          password: ""
+          usuario: {}
         }
-      };
+    },
+    created() {
+      this.usuario = this.$func.usuario();
     },
     methods: {
-      login(username, password) {
-        var students = this.$parent.students;
-        var index = 0, found = false;
-        if (username != "" && password != "") {
-          while (!found && index < students.length) {
-            if (username == students[index].Usuario && password == students[index].Clave) {
-              found = true;
-            }
-            index++;      
-          }
+      onSubmit() {
+      },
+      login() {
+        if (this.usuario.usuario != "" && this.usuario.clave != "") {
+          const found = this.$func.login(this.usuario);
           if (found) {
-              this.$emit("authenticated", true);
-              this.$router.replace({ name: "student" });
-              this.$parent.student = username;
+            this.$emit("authorizeEvent", true);
+            this.$router.replace({ name: "estudiante" });
+            this.$parent.usuario = this.usuario;
           } else {
-            // show an error message (not found)
-          }             
+            this.flashMessage.info({
+              title: 'Iniciar Sesión',
+              message: 'Las credenciales no aparecen registradas en nuestro sistema!'
+            });
+          }
         } else {
-          // show an error message (required fields)
-        }             
+          this.flashMessage.warning({
+            title: 'Iniciar Sesión',
+            message: 'Debe suministrar las credenciales para iniciar sesión'
+          });
+        }  
       }
     }
-  };
+  }
 </script>
-
-<style scoped>
-  #login {
-    width: 500px;
-    background: rgb(182, 215, 168);
-    border-radius: 10px;
-    overflow: hidden;
-    padding: 0 0 15px 15px;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 100px;
-  }
-  span {
-    font-family: Poppins-Regular;
-    font-size: 14px;
-    color: #333333;
-    line-height: 1.5;
-    padding-left: 5px;
-    text-align: left;
-  }
-  input {
-    font-family: Poppins-Medium;
-    font-size: 16px;
-    color: #333333;
-    line-height: 1.2;
-    display: block;
-    width: 450px;
-    height: 30px;
-    background: rgb(255, 255, 255);
-    padding-left: 5px;
-  }
-</style>
