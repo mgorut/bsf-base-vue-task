@@ -1,8 +1,13 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link v-if="autenticado" to="/login" v-on:click.native="logout()" replace>Cerrar Sesión</router-link>
-    </div>  
+    <div v-if="autenticado">
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark justify-content-end">
+        <span style="float: right;">
+          <router-link v-if="autenticado" to="/login" v-on:click.native="logout()" replace>Cerrar Sesión</router-link>
+        </span>
+      </nav>
+    </div>
+    <div v-else></div>
     <router-view @authorizeEvent="authorize" />
   </div>  
 </template>

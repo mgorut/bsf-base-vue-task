@@ -21,7 +21,7 @@
                           </div>
                           <div class="form-group">
                               <label for="password" class="text-info">Contraseña:</label><br>
-                              <input type="text" id="password" v-model="usuario.clave" class="form-control">
+                              <input type="password" id="password" v-model="usuario.clave" class="form-control">
                           </div>
                           <input type="submit" v-on:click="login()" class="btn btn-info btn-md" value="Iniciar Sesión">
                       </form>
